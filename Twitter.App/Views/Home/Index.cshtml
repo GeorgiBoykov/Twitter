@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Twitter.App.Models.ViewModels.TweetViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@{
+    ViewBag.Title = "Tweets";
+}
+
+<h3>All Tweets</h3>
+
+@foreach (var t in Model)
+{
+    @t.Author
+    <br/>
+    @t.Text
+    <br/>
+    @t.DatePosted
+    <br/>
+    <br/>
+}
