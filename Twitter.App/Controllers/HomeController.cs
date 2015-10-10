@@ -12,6 +12,7 @@
     using Twitter.App.Models.ViewModels;
     using Twitter.Models;
 
+    [Authorize]
     [RoutePrefix("home")]
     public class HomeController : BaseController
     {
@@ -22,33 +23,18 @@
 
         public ActionResult Index()
         {
-            var tweets =
+            var recentTweets =
                 this.Data.Tweets.All()
                     .Select(
-                        t => new TweetViewModel { Author = t.Author.UserName, Text = t.Text, DatePosted = t.DatePosted });
+                        t => new TweetViewModel
+                                 {
+                                    Author = t.Author.UserName,
+                                    Text = t.Text,
+                                    DatePosted = t.DatePosted
+                                 })
+                    .Take(10);
 
-            return this.View(tweets);
-        }
-
-        [HttpGet]
-        [Route("new-tweet")]
-        public ActionResult NewTweetForm()
-        {
-            return this.View();
-        }
-
-        [HttpPost]
-        public void CreateTweet(CreateTweetBindingModel model)
-        {
-            var loggedUserId = this.User.Identity.GetUserId();
-
-            var tweet = new Tweet { Text = model.Text, AuthorId = loggedUserId, DatePosted = DateTime.Now };
-
-            this.Data.Tweets.Add(tweet);
-
-            this.Data.SaveChanges();
-
-            this.RedirectToAction("Index");
+            return this.View(recentTweets);
         }
     }
 }

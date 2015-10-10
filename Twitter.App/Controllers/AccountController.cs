@@ -77,7 +77,7 @@
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result =
-                await this.SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                await this.SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -158,7 +158,7 @@
         {
             if (this.ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.UserName, Email = model.Email };
                 var result = await this.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -207,7 +207,7 @@
         {
             if (this.ModelState.IsValid)
             {
-                var user = await this.UserManager.FindByNameAsync(model.Email);
+                var user = await this.UserManager.FindByNameAsync(model.UserName);
                 if (user == null || !(await this.UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
@@ -251,7 +251,7 @@
                 return this.View(model);
             }
 
-            var user = await this.UserManager.FindByNameAsync(model.Email);
+            var user = await this.UserManager.FindByNameAsync(model.UserName);
             if (user == null)
             {
                 // Don't reveal that the user does not exist

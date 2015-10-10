@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Twitter.App.Models.ViewModels.UserViewModel>
+@{
+    ViewBag.Title = "SearchUser";
+}
+
+<h2>SearchUser</h2>
+
+@foreach (var user in Model)
+{
+    @user.Username <br/>
+    @user.Email
+}
+
