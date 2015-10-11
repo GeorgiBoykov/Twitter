@@ -56,6 +56,14 @@
             }
         }
 
+        public IRepository<Notification> Notifications
+        {
+            get
+            {
+                return this.GetRepository<Notification>();
+            }
+        }
+
         public IRepository<User> Users
         {
             get

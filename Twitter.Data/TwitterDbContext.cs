@@ -21,6 +21,8 @@ namespace Twitter.Data
 
         public IDbSet<Report> Reports { get; set; }
 
+        public IDbSet<Notification> Notifications { get; set; }
+
         public static TwitterDbContext Create()
         {
             return new TwitterDbContext();
@@ -42,24 +44,29 @@ namespace Twitter.Data
 
             modelBuilder.Entity<Tweet>()
                 .HasRequired(t => t.Author)
-                .WithMany()
+                .WithMany(u => u.Tweets)
                 .HasForeignKey(t => t.AuthorId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tweet>()
                 .HasMany(t => t.Replies)
                 .WithMany()
-                .Map(t => t.MapLeftKey("TweetId").MapRightKey("ReplyTweetId").ToTable("TweetReplies"));
+                .Map(t => t.MapLeftKey("TweetId").MapRightKey("ReplyTweetId").ToTable("TweetsReplies"));
+
+            modelBuilder.Entity<User>()
+               .HasMany(u => u.FavouriteTweets)
+               .WithMany(t => t.Favourers)
+               .Map(m =>
+               {
+                   m.MapLeftKey("UserId");
+                   m.MapRightKey("TweetId");
+                   m.ToTable("UsersFavouriteTweets");
+               });
 
             modelBuilder.Entity<User>()
                 .HasMany(u => u.FollowingUsers)
-                .WithMany()
-                .Map(u => u.MapLeftKey("UserId").MapRightKey("FollowerId").ToTable("Followers"));
-
-            modelBuilder.Entity<User>()
-                .HasMany(u => u.Followers)
-                .WithMany()
-                .Map(u => u.MapLeftKey("UserId").MapRightKey("FollowingUserId").ToTable("FollowingUsers"));
+                .WithMany(u => u.Followers)
+                .Map(u => u.MapLeftKey("UserId").MapRightKey("FollowingUserId").ToTable("UsersFollowers"));
 
             base.OnModelCreating(modelBuilder);
         }

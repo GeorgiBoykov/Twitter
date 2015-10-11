@@ -22,6 +22,8 @@
 
         public virtual ICollection<User> Followers { get; set; }
 
+        public virtual ICollection<Tweet> FavouriteTweets { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

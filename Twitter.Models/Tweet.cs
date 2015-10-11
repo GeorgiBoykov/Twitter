@@ -3,12 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Tweet
     {
         public Tweet()
         {
-            this.Likers = new HashSet<User>();
+            this.Favourers = new HashSet<User>();
             this.Replies = new HashSet<Tweet>();
             this.Reports = new HashSet<Report>();
         }
@@ -20,14 +21,13 @@
         [MinLength(2)]
         public string Text { get; set; }
 
-        [Required]
         public string AuthorId { get; set; }
 
-        public User Author { get; set; }
+        public virtual User Author { get; set; }
 
         public DateTime DatePosted { get; set; }
 
-        public virtual ICollection<User> Likers { get; set; }
+        public virtual ICollection<User> Favourers { get; set; }
 
         public virtual ICollection<Tweet> Replies { get; set; }
 

@@ -15,6 +15,8 @@
 
         IRepository<Report> Reports { get; }
 
+        IRepository<Notification> Notifications { get; }
+
         IRepository<User> Users { get; }
 
         IUserStore<User> UserStore { get; }
