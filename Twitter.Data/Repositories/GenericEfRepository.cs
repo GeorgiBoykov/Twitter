@@ -14,7 +14,7 @@
             this.EntitySet = dbContext.Set<TEntity>();
         }
 
-        public IDbSet<TEntity> EntitySet { get; }
+        public IDbSet<TEntity> EntitySet { get; private set; }
 
         public IQueryable<TEntity> All()
         {
