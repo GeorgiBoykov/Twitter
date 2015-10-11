@@ -1,6 +1,6 @@
 ﻿namespace Twitter.Data.UnitOfWork
 {
-    using BookShopSystem.Data.Repositories;
+    using Twitter.Data.Repositories;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;

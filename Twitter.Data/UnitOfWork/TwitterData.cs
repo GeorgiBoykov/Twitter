@@ -1,10 +1,10 @@
-﻿namespace BookShopSystem.Data.UnitOfWork
+﻿namespace Twitter.Data.UnitOfWork
 {
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
 
-    using BookShopSystem.Data.Repositories;
+    using Twitter.Data.Repositories;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;

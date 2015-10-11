@@ -1,6 +1,6 @@
 ﻿namespace Twitter.App.Controllers
 {
-    using BookShopSystem.Data.UnitOfWork;
+    using Twitter.Data.UnitOfWork;
 
     public class MessagesController : BaseController
     {

@@ -1,4 +1,4 @@
-﻿namespace BookShopSystem.Data.Repositories
+﻿namespace Twitter.Data.Repositories
 {
     using System.Linq;
 
