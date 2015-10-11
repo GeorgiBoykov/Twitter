@@ -3,11 +3,10 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using Twitter.Data.UnitOfWork;
-
     using Microsoft.Ajax.Utilities;
 
     using Twitter.App.Models.ViewModels;
+    using Twitter.Data.UnitOfWork;
 
     [RoutePrefix("users")]
     public class UsersController : BaseController
