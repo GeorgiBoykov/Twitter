@@ -8,15 +8,12 @@
     ViewBag.Title = "Tweets";
 }
 
-<h3>All Tweets</h3>
+<div id="tweets">
+    <h3>All Tweets</h3>
+    <div id="new-tweet-place"></div>
 
-@foreach (var t in Model)
-{
-    @t.Author
-    <br/>
-    @t.Text
-    <br/>
-    @t.DatePosted
-    <br/>
-    <br/>
-}
+    @foreach (var tweet in Model)
+    {
+        Html.RenderPartial("../Tweets/_Tweet", tweet);
+    }
+</div>

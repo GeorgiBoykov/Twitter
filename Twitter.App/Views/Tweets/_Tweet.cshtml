@@ -1,0 +1,15 @@
+﻿@model Twitter.App.Models.ViewModels.TweetViewModel
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <p class="text-muted">@Model.DatePosted</p>
+        <p class="text-muted" id="tweet-author">@Model.Author</p>
+        <p class="text-muted">@Model.Text</p>
+    </div>
+    <ul class="nav nav-pills">
+        <li><a href="#">Reply <span class="badge">@Model.RepliesCount</span></a></li>
+        <li><a href="#">Retweet <span class="badge">@Model.RetweetsCount</span></a></li>
+        <li><a href="#">Favourite <span class="badge">@Model.UsersFavouriteCount</span></a></li>
+        <li><a href="#">Report</a></li>
+    </ul>
+</div>

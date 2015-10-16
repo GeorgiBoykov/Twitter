@@ -1,0 +1,32 @@
+﻿@model Twitter.App.Models.BindingModels.CreateTweetBindingModel
+
+<div class="modal" id="new-tweet-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">New Tweet</h4>
+            </div>
+            @using (Ajax.BeginForm("CreateTweet", "Tweets", new { },
+                new AjaxOptions()
+                {
+                    HttpMethod = "POST",
+                    UpdateTargetId = "new-tweet-place",
+                    OnSuccess = "app.hideNewTweetModal",
+                    InsertionMode = InsertionMode.InsertBefore
+
+                }, new { name = "new-tweet-form" }))
+            {
+                <div class="modal-body">
+                    @Html.LabelFor(t => t.Text, "What`s happening?")
+                    @Html.TextAreaFor(t => t.Text, new { @class = "form-control" })
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Tweet" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

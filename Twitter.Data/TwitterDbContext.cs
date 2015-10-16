@@ -53,9 +53,15 @@ namespace Twitter.Data
                 .WithMany()
                 .Map(t => t.MapLeftKey("TweetId").MapRightKey("ReplyTweetId").ToTable("TweetsReplies"));
 
+            modelBuilder.Entity<Tweet>()
+                .HasMany(t => t.Retweets)
+                .WithMany()
+                .Map(t => t.MapLeftKey("TweetId").MapRightKey("RetweetId").ToTable("TweetsRetweets"));
+
+
             modelBuilder.Entity<User>()
                .HasMany(u => u.FavouriteTweets)
-               .WithMany(t => t.Favourers)
+               .WithMany(t => t.UsersFavourite)
                .Map(m =>
                {
                    m.MapLeftKey("UserId");

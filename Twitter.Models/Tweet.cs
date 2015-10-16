@@ -9,8 +9,9 @@
     {
         public Tweet()
         {
-            this.Favourers = new HashSet<User>();
+            this.UsersFavourite = new HashSet<User>();
             this.Replies = new HashSet<Tweet>();
+            this.Retweets = new HashSet<Tweet>();
             this.Reports = new HashSet<Report>();
         }
 
@@ -27,9 +28,13 @@
 
         public DateTime DatePosted { get; set; }
 
-        public virtual ICollection<User> Favourers { get; set; }
+        public bool IsRetweet { get; set; }
+
+        public virtual ICollection<User> UsersFavourite { get; set; }
 
         public virtual ICollection<Tweet> Replies { get; set; }
+
+        public ICollection<Tweet> Retweets { get; set; }
 
         public virtual ICollection<Report> Reports { get; set; }
     }

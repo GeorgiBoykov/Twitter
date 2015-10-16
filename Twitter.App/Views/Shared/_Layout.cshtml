@@ -24,14 +24,23 @@
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 @if (Request.IsAuthenticated)
                 {
-                    <li>@Html.ActionLink("New Tweet", "NewTweetForm", "Tweets")</li>
+                    <li>
+                        @Ajax.ActionLink("New Tweet", "NewTweetForm", "Tweets",
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "new-tweet", // <-- DOM element ID to update
+                            InsertionMode = InsertionMode.Replace, // <-- Replace the content of DOM element
+                            HttpMethod = "GET", // <-- HTTP method,
+                            OnSuccess = "app.showNewTweetModal"
+                        })
+                    </li>
                 }
 
-                @using(Html.BeginForm("SearchUser", "Users", FormMethod.Post, new { @class = "navbar-form navbar-left" }))
+                @using (Html.BeginForm("SearchUser", "Users", FormMethod.Post, new { @class = "navbar-form navbar-left" }))
                 {
-                    <div class="form-group">
+                    <li class="form-group">
                         <input type="text" class="form-control" name="searchTerm" placeholder="Search">
-                    </div>
+                    </li>
                     <button type="submit" class="btn btn-default">Submit</button>
                 }
             </ul>
@@ -41,6 +50,7 @@
     </div>
 </div>
 <div class="container body-content">
+    <div id="new-tweet"></div>
     @RenderBody()
     <hr/>
     <footer>

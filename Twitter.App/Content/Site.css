@@ -22,3 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
+#tweets {
+    margin: 0 auto;
+    width: 70%;
+}
+#tweet-author {
+    font-weight: bold;
+}

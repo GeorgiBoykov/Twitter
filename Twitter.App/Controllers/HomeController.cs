@@ -30,6 +30,9 @@
                                  {
                                     Author = t.Author.UserName,
                                     Text = t.Text,
+                                    UsersFavouriteCount = t.UsersFavourite.Count,
+                                    RepliesCount = t.Replies.Count,
+                                    RetweetsCount = t.Retweets.Count,
                                     DatePosted = t.DatePosted
                                  })
                     .Take(10);
