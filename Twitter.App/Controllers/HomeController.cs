@@ -28,6 +28,7 @@
                     .Select(
                         t => new TweetViewModel
                                  {
+                                    Id = t.Id,
                                     Author = t.Author.UserName,
                                     Text = t.Text,
                                     UsersFavouriteCount = t.UsersFavourite.Count,

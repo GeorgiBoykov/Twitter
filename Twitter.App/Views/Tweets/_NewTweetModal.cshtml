@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">New Tweet</h4>
             </div>
-            @using (Ajax.BeginForm("CreateTweet", "Tweets", new { },
+            @using (Ajax.BeginForm("InsertTweet", "Tweets", new { },
                 new AjaxOptions()
                 {
                     HttpMethod = "POST",
@@ -20,6 +20,7 @@
                 <div class="modal-body">
                     @Html.LabelFor(t => t.Text, "What`s happening?")
                     @Html.TextAreaFor(t => t.Text, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(t => t.Text, string.Empty, new { @class = "text-danger" })
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -29,4 +30,4 @@
         </div>
     </div>
 </div>
-
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

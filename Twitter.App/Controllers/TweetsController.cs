@@ -1,6 +1,7 @@
 ﻿namespace Twitter.App.Controllers
 {
     using System;
+    using System.Linq;
     using System.Web.Mvc;
 
     using Twitter.Data.UnitOfWork;
@@ -29,8 +30,14 @@
 
         [HttpPost]
         [Route("add")]
-        public ActionResult CreateTweet(CreateTweetBindingModel model)
+        public ActionResult InsertTweet(CreateTweetBindingModel model)
         {
+            if (!this.ModelState.IsValid)
+            {
+                this.Response.StatusCode = 400;
+                return this.Json(this.ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
+            }
+
             var loggedUserId = this.User.Identity.GetUserId();
             var loggedUserUsername = this.User.Identity.GetUserName();
 
@@ -51,6 +58,18 @@
                         Text = tweet.Text,
                         UsersFavouriteCount = tweet.UsersFavourite.Count
                     });
+        }
+
+        public int Favourite(int tweetId)
+        {
+            var loggedUserId = this.User.Identity.GetUserId();
+            var tweet = this.Data.Tweets.Find(tweetId);
+
+            this.Data.Users.Find(loggedUserId).FavouriteTweets.Add(tweet);
+
+            this.Data.SaveChanges();
+
+            return tweet.UsersFavourite.Count();
         }
     }
 }

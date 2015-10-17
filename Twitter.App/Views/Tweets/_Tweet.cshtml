@@ -6,10 +6,16 @@
         <p class="text-muted" id="tweet-author">@Model.Author</p>
         <p class="text-muted">@Model.Text</p>
     </div>
-    <ul class="nav nav-pills">
+    <ul class="tweet-options">
         <li><a href="#">Reply <span class="badge">@Model.RepliesCount</span></a></li>
         <li><a href="#">Retweet <span class="badge">@Model.RetweetsCount</span></a></li>
-        <li><a href="#">Favourite <span class="badge">@Model.UsersFavouriteCount</span></a></li>
+        <li>
+            @Ajax.ActionLink("Favourite", "Favourite", "Tweets",
+            new { tweetId = @Model.Id, @class = "btn btn-link" },
+            new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "Favourites" + @Model.Id })
+            <span class="badge" id="@String.Format("Favourites{0}", @Model.Id)">@Model.UsersFavouriteCount</span>
+        </li>
         <li><a href="#">Report</a></li>
     </ul>
+
 </div>
