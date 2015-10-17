@@ -7,15 +7,26 @@
 @{
     ViewBag.Title = "Tweets";
 }
-
 <div id="tweets">
-    <h3>All Tweets</h3>
-    <div id="new-tweet-place"></div>
 
-    @foreach (var tweet in Model)
-    {
-        Html.RenderPartial("../Tweets/_Tweet", tweet);
-    }
+    @{ Html.RenderPartial("_Tweets", Model); }
+
+</div>
+
+<div class="paging">
+    <ul class="pagination">
+        @for (int i = 0; i <= Model.Count(); i++)
+        {
+            if (i % 10 == 0)
+            {
+                <li>
+                    @Ajax.ActionLink((i / 10 + 1).ToString(), "TweetsByPage",
+                        new { page = (i / 10) + 1 },
+                        new AjaxOptions { UpdateTargetId = "tweets", InsertionMode = InsertionMode.Replace })
+                </li>
+            }
+        }
+    </ul>
 </div>
 
 @section Scripts {

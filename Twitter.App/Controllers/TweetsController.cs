@@ -51,6 +51,7 @@
                 "_Tweet",
                 new TweetViewModel
                     {
+                        Id = tweet.Id,
                         Author = loggedUserUsername,
                         DatePosted = tweet.DatePosted,
                         RetweetsCount = tweet.Retweets.Count,

@@ -279,6 +279,7 @@
     <Content Include="Views\Users\SearchUser.cshtml" />
     <Content Include="Views\Tweets\_Tweet.cshtml" />
     <Content Include="Views\Tweets\_NewTweetModal.cshtml" />
+    <Content Include="Views\Home\_Tweets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

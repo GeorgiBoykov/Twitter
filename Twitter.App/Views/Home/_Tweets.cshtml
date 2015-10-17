@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Twitter.App.Models.ViewModels.TweetViewModel>
+
+    <h3>All Tweets</h3>
+    <div id="new-tweet-place"></div>
+
+    @foreach (var tweet in Model)
+    {
+        Html.RenderPartial("../Tweets/_Tweet", tweet);
+    }
+
